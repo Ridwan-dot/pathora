@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;600&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #234b3b;
+  --color-forest-dark: #18382c;
+  --color-cream: #faf7f0;
+  --color-sage: #e5ede4;
+  --color-coral: #e98d78;
+  --color-coral-tint: #f7d9d0;
+  --color-line: #dde6db;
+  --color-muted: #4a6a5c;
+  --color-ok: #cfe5d3;
+  --color-need: #fbe7b0;
+  --color-need-text: #5a3e00;
+  --color-danger: #8a2e1b;
+  --font-heading: "DM Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-forest-dark);
+  font-family: var(--font-body);
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+}
+
+input, textarea, select {
+  font-size: 16px;
+}

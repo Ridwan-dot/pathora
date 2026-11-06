@@ -1,0 +1,14 @@
+# Public pages are open to search engines and AI crawlers.
+# Private app pages are not meant to be indexed.
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /analyse
+Disallow: /cv-studio
+Disallow: /interview-practice
+Disallow: /applications
+Disallow: /profile
+Disallow: /settings
+
+# Replace YOUR-DOMAIN with the real address once deployed (Stage 2 adds the sitemap file).
+# Sitemap: https://YOUR-DOMAIN/sitemap.xml
