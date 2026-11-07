@@ -1,14 +1,24 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useAuth } from '../auth/useAuth'
 import Logo from '../components/Logo'
 import { appNav } from '../navigation'
 
 // Sidebar layout for "home base" pages. On phones the sidebar becomes a scrolling row.
 export default function AppLayout() {
+  const { signOut } = useAuth()
+  const navigate = useNavigate()
+  async function logOut() {
+    await signOut()
+    navigate('/', { replace: true })
+  }
   return (
     <div className="min-h-screen">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white px-5 py-3">
         <Link to="/dashboard" aria-label="Pathora dashboard"><Logo /></Link>
-        <Link to="/profile" className="text-sm text-muted">Your profile</Link>
+        <span className="flex items-center gap-4 text-sm">
+          <Link to="/profile" className="text-muted">Your profile</Link>
+          <button type="button" onClick={logOut} className="min-h-9 font-semibold underline">Log out</button>
+        </span>
       </header>
       <div className="md:grid md:grid-cols-[220px_1fr]">
         <nav

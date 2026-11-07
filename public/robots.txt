@@ -10,3 +10,10 @@ Disallow: /applications
 Disallow: /profile
 Disallow: /settings
 
+Disallow: /onboarding
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /check-email
+Disallow: /verified

@@ -14,13 +14,14 @@ export const publicRoutes = [
   ...guides.map((g) => ({ path: `/resources/${g.slug}`, element: <GuidePage guide={g} /> })),
 ]
 
-export const authPaths = ['/signup', '/login']
+export const authPaths = ['/signup', '/login', '/forgot-password', '/reset-password', '/check-email', '/verified']
+export const privatePaths = ['/onboarding', ...appNav.map((i) => i.to)]
 
 // Every page we pre-build as HTML.
 export const allPaths = [
   ...publicRoutes.map((r) => r.path),
   ...authPaths,
-  ...appNav.map((i) => i.to),
+  ...privatePaths,
 ]
 
 // Pages listed in the sitemap (tools appear only when live).
