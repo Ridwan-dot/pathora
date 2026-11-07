@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Seo from '../components/Seo'
 
 const steps = [
   { to: '/analyse', title: 'Understand a job', text: 'Paste a vacancy to see what the employer is really asking for.' },
@@ -10,6 +11,7 @@ const steps = [
 export default function Dashboard() {
   return (
     <div>
+      <Seo title="Dashboard | Pathora" description="Your Pathora dashboard." path="/dashboard" noindex />
       <h2 className="text-2xl font-bold">Good morning</h2>
       <p className="mt-1 text-muted">Let's make your next career move a little clearer.</p>
       <h3 className="mt-6 text-lg font-bold">Your next steps</h3>

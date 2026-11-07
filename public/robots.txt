@@ -10,5 +10,3 @@ Disallow: /applications
 Disallow: /profile
 Disallow: /settings
 
-# Replace YOUR-DOMAIN with the real address once deployed (Stage 2 adds the sitemap file).
-# Sitemap: https://YOUR-DOMAIN/sitemap.xml

@@ -1,19 +1,23 @@
 import { Route, Routes } from 'react-router-dom'
 import PublicLayout from './layouts/PublicLayout'
 import AppLayout from './layouts/AppLayout'
-import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import { appNav } from './navigation'
+import { authPaths, publicRoutes } from './routes'
 
 function App() {
   return (
     <Routes>
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<ComingSoon title="Create your account" />} />
-        <Route path="/login" element={<ComingSoon title="Log in" />} />
+        {publicRoutes.map((r) => (
+          <Route key={r.path} path={r.path} element={r.element} />
+        ))}
+        {authPaths.map((p) => (
+          <Route key={p} path={p} element={<ComingSoon title={p === '/signup' ? 'Create your account' : 'Log in'} />} />
+        ))}
+        <Route path="*" element={<NotFound />} />
       </Route>
 
       <Route element={<AppLayout />}>
@@ -24,8 +28,6 @@ function App() {
             <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
           ))}
       </Route>
-
-      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

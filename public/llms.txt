@@ -1,0 +1,16 @@
+# Pathora
+
+> Pathora is a career-readiness platform for students, recent graduates, NYSC members and entry-level job seekers, starting with Nigeria. It helps people understand job descriptions, turn real experience into evidence, build and tailor a CV, practise interviews in text, and track applications.
+
+Pathora never invents experience, gives match scores or predicts hiring outcomes. Application statuses are updated by the user, not fetched from employers.
+
+## Tools
+- [Job Description Analyser](/tools/job-analyser)
+- [Experience-to-Evidence Builder](/tools/evidence-builder)
+- [CV Studio](/tools/cv-builder)
+- [Interview Practice](/tools/interview-practice)
+- [Application Tracker](/tools/application-tracker)
+
+## Career resources
+- [How to read a job description](/resources/how-to-read-a-job-description)
+- [How to show evidence on your CV with no work experience](/resources/evidence-for-your-cv-without-experience)
