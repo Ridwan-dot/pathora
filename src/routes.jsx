@@ -15,7 +15,15 @@ export const publicRoutes = [
 ]
 
 export const authPaths = ['/signup', '/login', '/forgot-password', '/reset-password', '/check-email', '/verified']
-export const privatePaths = ['/onboarding', ...appNav.map((i) => i.to)]
+export const privatePaths = [
+  '/onboarding',
+  ...appNav.map((i) => i.to),
+  '/profile/personal',
+  '/profile/education',
+  '/profile/skills',
+  '/profile/experience',
+  '/profile/experience/edit',
+]
 
 // Every page we pre-build as HTML.
 export const allPaths = [

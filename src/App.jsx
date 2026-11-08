@@ -7,6 +7,12 @@ import FocusLayout from './layouts/FocusLayout'
 import AppLayout from './layouts/AppLayout'
 import Dashboard from './pages/Dashboard'
 import Onboarding from './pages/Onboarding'
+import ProfileOverview from './pages/profile/ProfileOverview'
+import PersonalEdit from './pages/profile/PersonalEdit'
+import Education from './pages/profile/Education'
+import Skills from './pages/profile/Skills'
+import ExperienceList from './pages/profile/ExperienceList'
+import ExperienceForm from './pages/profile/ExperienceForm'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -39,13 +45,21 @@ function App() {
         </Route>
 
         <Route element={<RequireAuth />}>
-          <Route element={<FocusLayout />}>
+          <Route element={<FocusLayout skip />}>
             <Route path="/onboarding" element={<Onboarding />} />
+          </Route>
+          <Route element={<FocusLayout backTo="/profile" backLabel="Career profile" />}>
+            <Route path="/profile/personal" element={<PersonalEdit />} />
+            <Route path="/profile/education" element={<Education />} />
+            <Route path="/profile/skills" element={<Skills />} />
+            <Route path="/profile/experience" element={<ExperienceList />} />
+            <Route path="/profile/experience/edit" element={<ExperienceForm />} />
           </Route>
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<ProfileOverview />} />
             {appNav
-              .filter((item) => item.to !== '/dashboard')
+              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile')
               .map((item) => (
                 <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
               ))}

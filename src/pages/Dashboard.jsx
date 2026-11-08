@@ -25,7 +25,7 @@ export default function Dashboard() {
       {profile && !profile.onboarding_done && (
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-sage p-4">
           <span><b>Your career profile is just getting started.</b><br /><span className="text-muted">Answer three quick questions to get more relevant guidance.</span></span>
-          <Link to="/onboarding" className="font-semibold underline">Finish setting up →</Link>
+          <Link to="/onboarding" className="btn-sm">Finish setting up →</Link>
         </div>
       )}
 

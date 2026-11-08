@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { AuthContext } from './context'
 
-const PROFILE_FIELDS = 'full_name, stage, target_role, onboarding_done'
+const PROFILE_FIELDS = 'full_name, stage, target_role, onboarding_done, phone, location, link, summary'
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null)

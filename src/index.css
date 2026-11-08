@@ -34,3 +34,21 @@ h1, h2, h3 {
 input, textarea, select {
   font-size: 16px;
 }
+
+/* Small outlined buttons for secondary actions (Edit, Manage, Remove, Log out) */
+.btn-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--color-forest);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--color-forest-dark);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.btn-sm:hover { background: var(--color-sage); }
+.btn-sm-danger { border-color: var(--color-danger); color: var(--color-danger); }
+.btn-sm-danger:hover { background: #fbe3dc; }

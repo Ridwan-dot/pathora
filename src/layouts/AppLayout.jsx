@@ -16,8 +16,8 @@ export default function AppLayout() {
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-white px-5 py-3">
         <Link to="/dashboard" aria-label="Pathora dashboard"><Logo /></Link>
         <span className="flex items-center gap-4 text-sm">
-          <Link to="/profile" className="text-muted">Your profile</Link>
-          <button type="button" onClick={logOut} className="min-h-9 font-semibold underline">Log out</button>
+          <Link to="/profile" className="btn-sm">Your profile</Link>
+          <button type="button" onClick={logOut} className="btn-sm">Log out</button>
         </span>
       </header>
       <div className="md:grid md:grid-cols-[220px_1fr]">
