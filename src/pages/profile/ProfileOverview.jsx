@@ -27,7 +27,11 @@ export default function ProfileOverview() {
   const education = useTable('education')
   const skills = useTable('skills')
   const experiences = useTable('experiences')
-  const backed = new Set(experiences.rows.flatMap((e) => (e.skills_used || []).map((s) => s.toLowerCase())))
+  const backed = new Set(
+    experiences.rows
+      .filter((e) => e.evidence_statement)
+      .flatMap((e) => (e.skills_used || []).map((s) => s.toLowerCase())),
+  )
   const needDetails = experiences.rows.filter((e) => !e.evidence_statement)
 
   return (
@@ -44,7 +48,7 @@ export default function ProfileOverview() {
       {needDetails.length > 0 && (
         <div className="mt-4 rounded-2xl bg-sage p-4">
           <b>{needDetails.length} experience{needDetails.length > 1 ? 's need' : ' needs'} more details.</b>{' '}
-          {needDetails[0].title} has no evidence statement yet. <Link to={`/profile/experience/edit?id=${needDetails[0].id}`} className="font-semibold underline">Add details →</Link>
+          {needDetails[0].title} has no evidence statement yet. <Link to={`/evidence?id=${needDetails[0].id}`} className="font-semibold underline">Add details →</Link>
         </div>
       )}
 
@@ -68,7 +72,7 @@ export default function ProfileOverview() {
           {skills.rows.length === 0 ? <Empty text="Start with three you are sure of." to="/profile/skills" cta="+ Add skills" /> : (
             <>
               <p>{skills.rows.map((s) => <span key={s.id} className={`mb-1.5 mr-1.5 inline-block rounded-full border px-3 py-1.5 ${backed.has(s.name.toLowerCase()) ? 'border-forest bg-sage font-semibold' : 'border-[#b9cdbf] bg-white'}`}>{backed.has(s.name.toLowerCase()) ? '✓ ' : ''}{s.name}</span>)}</p>
-              <p className="text-sm text-muted">✓ means a project or experience backs it up. No tick means you added it yourself.</p>
+              <p className="text-sm text-muted">✓ means an experience with an evidence statement backs it up. No tick means you added it yourself.</p>
             </>
           )}
         </Card>

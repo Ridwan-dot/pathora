@@ -23,6 +23,7 @@ export const privatePaths = [
   '/profile/skills',
   '/profile/experience',
   '/profile/experience/edit',
+  '/evidence',
 ]
 
 // Every page we pre-build as HTML.

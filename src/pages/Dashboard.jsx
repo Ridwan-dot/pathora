@@ -4,7 +4,7 @@ import { useAuth } from '../auth/useAuth'
 
 const steps = [
   { to: '/analyse', title: 'Understand a job', text: 'Paste a vacancy to see what the employer is really asking for.' },
-  { to: '/profile', title: 'Find your evidence', text: 'Explore the skills you may have gained through projects and study.' },
+  { to: '/evidence', title: 'Find your evidence', text: 'Explore the skills you may have gained through projects and study.' },
   { to: '/interview-practice', title: 'Practise your introduction', text: 'Build confidence explaining who you are and what you bring.' },
 ]
 

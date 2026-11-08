@@ -13,6 +13,7 @@ import Education from './pages/profile/Education'
 import Skills from './pages/profile/Skills'
 import ExperienceList from './pages/profile/ExperienceList'
 import ExperienceForm from './pages/profile/ExperienceForm'
+import EvidenceBuilder from './pages/EvidenceBuilder'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -54,6 +55,7 @@ function App() {
             <Route path="/profile/skills" element={<Skills />} />
             <Route path="/profile/experience" element={<ExperienceList />} />
             <Route path="/profile/experience/edit" element={<ExperienceForm />} />
+            <Route path="/evidence" element={<EvidenceBuilder />} />
           </Route>
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />

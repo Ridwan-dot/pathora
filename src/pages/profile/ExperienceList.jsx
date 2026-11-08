@@ -48,6 +48,7 @@ export default function ExperienceList() {
               </span>
               <span className="flex flex-wrap items-center gap-3">
                 {r.evidence_statement ? <Pill tone="ok">Evidence statement saved</Pill> : <Pill tone="need">Needs details</Pill>}
+                {!r.evidence_statement && <Link className="btn-sm" to={`/evidence?id=${r.id}`}>Add details</Link>}
                 <Link className="btn-sm" to={`/profile/experience/edit?id=${r.id}`}>Edit</Link>
                 <button type="button" className="btn-sm btn-sm-danger" onClick={() => setConfirm(r.id)}>Remove</button>
               </span>

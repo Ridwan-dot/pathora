@@ -9,7 +9,7 @@ const stages = ['Student', 'Recent graduate', 'NYSC member', 'Looking for an int
 const roleIdeas = ['Customer support', 'Data analysis', 'Software development', 'Business analysis']
 const starts = [
   { t: 'Analyse a job', d: 'Paste a vacancy and see what it really asks for.', to: '/analyse' },
-  { t: 'Build my evidence', d: 'Turn a project or placement into clear evidence.', to: '/profile' },
+  { t: 'Build my evidence', d: 'Turn a project or placement into clear evidence.', to: '/evidence' },
   { t: 'Set up my profile', d: 'Add your education, skills and goals.', to: '/profile' },
 ]
 

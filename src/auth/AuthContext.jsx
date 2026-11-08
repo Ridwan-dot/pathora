@@ -50,7 +50,11 @@ export function AuthProvider({ children }) {
     [userId],
   )
 
-  const signOut = useCallback(() => supabase?.auth.signOut(), [])
+  const signOut = useCallback(() => {
+    // Remove any drafts kept on this device, so the next person on a shared computer cannot see them.
+    Object.keys(localStorage).filter((k) => k.startsWith('pathora-draft-')).forEach((k) => localStorage.removeItem(k))
+    return supabase?.auth.signOut()
+  }, [])
 
   const value = useMemo(
     () => ({ configured: Boolean(supabase), session, user: session?.user ?? null, profile, loading, updateProfile, signOut }),

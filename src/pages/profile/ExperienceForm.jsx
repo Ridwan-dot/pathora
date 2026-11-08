@@ -6,14 +6,15 @@ import Seo from '../../components/Seo'
 import { TextArea, TextField } from '../../components/TextField'
 import { useTable } from '../../data/useTable'
 import { experienceTypes } from '../../data/constants'
+import { useAuth } from '../../auth/useAuth'
+import { addMissingSkills, assembleStatement, draftKey, toSkills } from '../../data/experience'
 import { endBeforeStart, isWebAddress } from '../../lib/dates'
 
-const blank = { type: 'project', title: '', organisation: '', role: '', start_date: '', end_date: '', is_current: false, responsibilities: '', achievements: '', skills_text: '', evidence_link: '', evidence_statement: '' }
-
-const toSkills = (text) => [...new Set(text.split(',').map((s) => s.trim()).filter(Boolean))]
+const blank = { type: 'project', title: '', organisation: '', role: '', start_date: '', end_date: '', is_current: false, situation: '', responsibilities: '', achievements: '', skills_text: '', evidence_link: '', evidence_statement: '' }
 
 function Form({ initial, id, experiences, skills }) {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [v, setV] = useState(initial)
   const [errors, setErrors] = useState({})
   const [failed, setFailed] = useState(false)
@@ -23,11 +24,17 @@ function Form({ initial, id, experiences, skills }) {
 
   // Starting point = your own sentences, joined. Nothing is added or reworded.
   function startingPoint() {
-    const own = [v.responsibilities.trim(), v.achievements.trim()].filter(Boolean).join(' ')
+    const own = assembleStatement(v)
     if (!own) return setHint('Fill in what you were responsible for first.')
     if (v.evidence_statement.trim()) return setHint('Clear the statement box first, or edit it directly.')
     setHint('')
-    setV({ ...v, evidence_statement: own.slice(0, 600) })
+    setV({ ...v, evidence_statement: own })
+  }
+
+  // Hand what you have typed over to the guided builder, so nothing is lost.
+  function openBuilder() {
+    localStorage.setItem(draftKey(user.id), JSON.stringify({ step: 2, values: { ...v }, statement: v.evidence_statement }))
+    navigate('/evidence')
   }
 
   async function submit(e) {
@@ -52,6 +59,7 @@ function Form({ initial, id, experiences, skills }) {
       start_date: clean(v.start_date),
       end_date: v.is_current ? null : clean(v.end_date),
       is_current: v.is_current,
+      situation: clean(v.situation),
       responsibilities: clean(v.responsibilities),
       achievements: clean(v.achievements),
       skills_used: skillsUsed,
@@ -65,13 +73,15 @@ function Form({ initial, id, experiences, skills }) {
       return setFailed(true)
     }
     // Skills you used appear in your Skills list, marked as backed by evidence.
-    const have = new Set(skills.rows.map((s) => s.name.toLowerCase()))
-    for (const name of skillsUsed.filter((s) => !have.has(s.toLowerCase()))) await skills.add({ name, category: 'Technical' })
+    await addMissingSkills(skills, skillsUsed)
     navigate('/profile/experience')
   }
 
   return (
     <form onSubmit={submit} noValidate>
+      {!id && (
+        <p className="mt-4 rounded-2xl bg-sage p-4">Prefer guided questions? <button type="button" onClick={openBuilder} className="font-semibold underline">Open the Experience-to-Evidence builder</button>. What you’ve typed here comes with you.</p>
+      )}
       <div className="mt-4 rounded-2xl border border-line bg-white p-5">
         <span className="text-sm font-semibold uppercase tracking-wider text-muted">Type</span>
         <p className="mt-1">
@@ -91,9 +101,10 @@ function Form({ initial, id, experiences, skills }) {
 
       <div className="mt-4 rounded-2xl border border-line bg-white p-5">
         <h2 className="text-lg font-bold">What happened</h2>
+        <TextArea label="What problem or situation was it?" id="situation" optional value={v.situation} onChange={set('situation')} />
         <TextArea label="What were you responsible for?" id="responsibilities" optional value={v.responsibilities} onChange={set('responsibilities')} placeholder="Describe the situation and your part in your own words..." />
         <TextArea label="What did you achieve or change?" id="achievements" optional value={v.achievements} onChange={set('achievements')} placeholder="A result you saw. Numbers are optional, never guessed." />
-        <TextField label="Tools or skills used" id="skills_text" optional value={v.skills_text} onChange={set('skills_text')} placeholder="e.g. React, JavaScript, localStorage" hint="Separate them with commas. They’ll be added to your Skills, marked as backed by this experience." />
+        <TextField label="Tools or skills used" id="skills_text" optional value={v.skills_text} onChange={set('skills_text')} placeholder="e.g. React, JavaScript, localStorage" hint="Separate them with commas. They’ll be added to your Skills. They count as backed once this experience has an evidence statement." />
       </div>
 
       <div className="mt-4 rounded-2xl border border-line bg-white p-5">
@@ -141,7 +152,7 @@ export default function ExperienceForm() {
           id={id}
           experiences={experiences}
           skills={skills}
-          initial={row ? { ...blank, ...row, organisation: row.organisation || '', role: row.role || '', start_date: row.start_date || '', end_date: row.end_date || '', responsibilities: row.responsibilities || '', achievements: row.achievements || '', skills_text: (row.skills_used || []).join(', '), evidence_link: row.evidence_link || '', evidence_statement: row.evidence_statement || '' } : blank}
+          initial={row ? { ...blank, ...row, organisation: row.organisation || '', role: row.role || '', start_date: row.start_date || '', end_date: row.end_date || '', situation: row.situation || '', responsibilities: row.responsibilities || '', achievements: row.achievements || '', skills_text: (row.skills_used || []).join(', '), evidence_link: row.evidence_link || '', evidence_statement: row.evidence_statement || '' } : blank}
         />
       )}
     </div>
