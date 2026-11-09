@@ -2,33 +2,33 @@
 export const features = [
   {
     slug: 'job-analyser',
-    live: false,
+    live: true,
     name: 'Job Description Analyser',
     tagline: 'Understand the job before you apply.',
     description:
       'Paste a job description and get it in plain English: what you would do, which requirements are essential, and which your experience already supports.',
     summary:
-      "The Job Description Analyser turns a pasted job description into plain English: what you would actually do day to day, which requirements are essential and which are preferred, what unfamiliar terms mean, and which requirements your own experience already supports.",
+      'The Job Description Analyser breaks a pasted job description into what you would do, which requirements are essential and which are preferred, what common terms mean, and which requirements your own saved evidence already supports.',
     does: [
-      'Explains the role in plain language',
+      'Lists what the role involves, taken from the job description',
       'Separates essential requirements from preferred ones',
-      'Explains unfamiliar skills, terms and tools',
+      'Explains common job-description terms in plain English',
       'Compares each requirement with the evidence in your Career Profile',
       'Suggests what to prepare before you apply',
     ],
     steps: [
-      'Paste a job description, or a public vacancy link.',
+      'Paste the text of a job description.',
       'Read the plain-English summary and the list of requirements.',
       'See which requirements are backed by your evidence, which you added yourself, and which still need evidence.',
       'Build evidence for any gaps, then tailor your CV.',
     ],
     limits: [
       'It does not give you a match score or predict whether you will be hired.',
-      'It cannot read pages behind a login or expired vacancies. If a link cannot be read, you paste the text instead.',
+      'It cannot read vacancy links yet. You paste the text of the job description.',
       'It only uses what you have told it. It never invents experience for you.',
     ],
     faqs: [
-      { q: 'Can I paste any job description?', a: 'Yes. Paste the text of any vacancy. If you use a link, it must be a public page. Otherwise you will be asked to paste the text.' },
+      { q: 'Can I paste any job description?', a: 'Yes. Paste the text of any vacancy. Links are not supported yet, so copy the text from the page.' },
       { q: 'Does the Analyser tell me whether to apply?', a: 'No. It shows what the employer asks for and what evidence you have, so you can decide. It does not score you.' },
       { q: 'Who is it for?', a: 'Students, recent graduates, NYSC members and entry-level job seekers who find job descriptions confusing.' },
     ],

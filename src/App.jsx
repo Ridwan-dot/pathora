@@ -14,6 +14,7 @@ import Skills from './pages/profile/Skills'
 import ExperienceList from './pages/profile/ExperienceList'
 import ExperienceForm from './pages/profile/ExperienceForm'
 import EvidenceBuilder from './pages/EvidenceBuilder'
+import Analyser from './pages/Analyser'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -49,6 +50,9 @@ function App() {
           <Route element={<FocusLayout skip />}>
             <Route path="/onboarding" element={<Onboarding />} />
           </Route>
+          <Route element={<FocusLayout backTo="/dashboard" backLabel="Overview" wide />}>
+            <Route path="/analyse" element={<Analyser />} />
+          </Route>
           <Route element={<FocusLayout backTo="/profile" backLabel="Career profile" />}>
             <Route path="/profile/personal" element={<PersonalEdit />} />
             <Route path="/profile/education" element={<Education />} />
@@ -61,7 +65,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<ProfileOverview />} />
             {appNav
-              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile')
+              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse')
               .map((item) => (
                 <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
               ))}
