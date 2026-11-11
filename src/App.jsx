@@ -15,6 +15,10 @@ import ExperienceList from './pages/profile/ExperienceList'
 import ExperienceForm from './pages/profile/ExperienceForm'
 import EvidenceBuilder from './pages/EvidenceBuilder'
 import Analyser from './pages/Analyser'
+import CvHome from './pages/cv/CvHome'
+import CvEditor from './pages/cv/CvEditor'
+import CvPreview from './pages/cv/CvPreview'
+import CvVersions from './pages/cv/CvVersions'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -53,6 +57,11 @@ function App() {
           <Route element={<FocusLayout backTo="/dashboard" backLabel="Overview" wide />}>
             <Route path="/analyse" element={<Analyser />} />
           </Route>
+          <Route element={<FocusLayout backTo="/cv-studio" backLabel="CV Studio" wide />}>
+            <Route path="/cv-studio/edit" element={<CvEditor />} />
+            <Route path="/cv-studio/preview" element={<CvPreview />} />
+            <Route path="/cv-studio/versions" element={<CvVersions />} />
+          </Route>
           <Route element={<FocusLayout backTo="/profile" backLabel="Career profile" />}>
             <Route path="/profile/personal" element={<PersonalEdit />} />
             <Route path="/profile/education" element={<Education />} />
@@ -64,8 +73,9 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<ProfileOverview />} />
+            <Route path="/cv-studio" element={<CvHome />} />
             {appNav
-              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse')
+              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse' && item.to !== '/cv-studio')
               .map((item) => (
                 <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
               ))}

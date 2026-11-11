@@ -52,3 +52,12 @@ input, textarea, select {
 .btn-sm:hover { background: var(--color-sage); }
 .btn-sm-danger { border-color: var(--color-danger); color: var(--color-danger); }
 .btn-sm-danger:hover { background: #fbe3dc; }
+
+/* Printing a CV: only the CV itself is printed, and missing-detail markers never appear. */
+@page { margin: 16mm; }
+@media print {
+  body * { visibility: hidden; }
+  .cv-paper, .cv-paper * { visibility: visible; }
+  .cv-paper { position: absolute; left: 0; top: 0; width: 100%; max-width: none; border: 0 !important; box-shadow: none !important; padding: 0 !important; }
+  .cv-gap { display: none !important; }
+}

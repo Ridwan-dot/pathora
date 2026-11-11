@@ -24,6 +24,9 @@ export const privatePaths = [
   '/profile/experience',
   '/profile/experience/edit',
   '/evidence',
+  '/cv-studio/edit',
+  '/cv-studio/preview',
+  '/cv-studio/versions',
 ]
 
 // Every page we pre-build as HTML.
