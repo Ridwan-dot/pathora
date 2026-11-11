@@ -13,6 +13,7 @@ export default function CvHome() {
   const navigate = useNavigate()
   const cvs = useTable('cvs', 'updated_at')
   const versions = useTable('cv_versions')
+  const jobs = useTable('job_analyses')
   const education = useTable('education')
   const skills = useTable('skills')
   const experiences = useTable('experiences')
@@ -20,7 +21,7 @@ export default function CvHome() {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
   const [confirm, setConfirm] = useState(null)
-  const ready = ![cvs, versions, education, skills, experiences].some((t) => t.loading)
+  const ready = ![cvs, versions, jobs, education, skills, experiences].some((t) => t.loading)
 
   async function createFrom(content, name, note) {
     setError('')
@@ -65,9 +66,10 @@ export default function CvHome() {
               const count = versions.rows.filter((v) => v.cv_id === cv.id).length
               return (
                 <div key={cv.id} className={`flex flex-wrap items-center justify-between gap-3 py-3 ${i ? 'border-t border-line' : ''}`}>
-                  <span><b>{cv.title}</b><br /><span className="text-sm text-muted">Updated {new Date(cv.updated_at).toLocaleDateString()} · {count} version{count === 1 ? '' : 's'}</span></span>
+                  <span><b>{cv.title}</b><br /><span className="text-sm text-muted">Updated {new Date(cv.updated_at).toLocaleDateString()} · {count} version{count === 1 ? '' : 's'}{cv.job_analysis_id && jobs.rows.find((j) => j.id === cv.job_analysis_id) ? ` · Tailored for ${jobs.rows.find((j) => j.id === cv.job_analysis_id).title}` : ''}</span></span>
                   <span className="flex flex-wrap gap-2">
                     <Link className="btn-sm" to={`/cv-studio/edit?id=${cv.id}`}>Open</Link>
+                    <Link className="btn-sm" to={`/cv-studio/tailor?id=${cv.id}`}>Tailor to a job</Link>
                     <Link className="btn-sm" to={`/cv-studio/preview?id=${cv.id}`}>Export</Link>
                     <Link className="btn-sm" to={`/cv-studio/versions?id=${cv.id}`}>Versions</Link>
                     <button type="button" className="btn-sm" disabled={busy} onClick={() => createFrom(cv.content, `Copy of ${cv.title}`.slice(0, 100), `Copied from “${cv.title}”`)}>Duplicate</button>

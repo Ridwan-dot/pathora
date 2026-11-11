@@ -39,7 +39,10 @@ export function SelectField({ label, id, error, hint, optional, className, optio
   return (
     <Wrap {...{ id, label, optional, hint, error, className }}>
       <select id={id} aria-invalid={Boolean(error)} className={`${base} ${look(error)}`} {...props}>
-        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+        {options.map((o) => {
+          const value = typeof o === 'string' ? o : o.value
+          return <option key={value} value={value}>{typeof o === 'string' ? o : o.label}</option>
+        })}
       </select>
     </Wrap>
   )

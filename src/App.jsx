@@ -19,6 +19,7 @@ import CvHome from './pages/cv/CvHome'
 import CvEditor from './pages/cv/CvEditor'
 import CvPreview from './pages/cv/CvPreview'
 import CvVersions from './pages/cv/CvVersions'
+import CvTailor from './pages/cv/CvTailor'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -61,6 +62,7 @@ function App() {
             <Route path="/cv-studio/edit" element={<CvEditor />} />
             <Route path="/cv-studio/preview" element={<CvPreview />} />
             <Route path="/cv-studio/versions" element={<CvVersions />} />
+            <Route path="/cv-studio/tailor" element={<CvTailor />} />
           </Route>
           <Route element={<FocusLayout backTo="/profile" backLabel="Career profile" />}>
             <Route path="/profile/personal" element={<PersonalEdit />} />

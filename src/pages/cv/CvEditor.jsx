@@ -59,6 +59,7 @@ function Editor({ cv, cvs, versions }) {
         <span className="flex flex-wrap items-center gap-2">
           {dirty ? <Pill tone="need">Unsaved changes</Pill> : <Pill tone="ok">Saved</Pill>}
           <Button onClick={save} disabled={busy || !dirty}>Save changes</Button>
+          <Link className="btn-sm" to={`/cv-studio/tailor?id=${cv.id}`}>Tailor to a job</Link>
           <Link className="btn-sm" to={`/cv-studio/preview?id=${cv.id}`}>Preview and export</Link>
         </span>
       </div>

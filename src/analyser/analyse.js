@@ -18,7 +18,7 @@ const EDUCATION_CUE = /\b(degree|b\.?sc|hnd|ond|diploma|bachelor|master|msc|cert
 const GENERIC = new Set(['experience', 'ability', 'strong', 'excellent', 'good', 'skills', 'skill', 'working', 'knowledge', 'understanding', 'proven', 'demonstrated', 'relevant', 'candidate', 'ability', 'able', 'years', 'must', 'will', 'have', 'with', 'that', 'this', 'their', 'from', 'such', 'other', 'including', 'which', 'within', 'across', 'about', 'where', 'while', 'being', 'also', 'etc'])
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-const hasTerm = (text, term) => new RegExp(`(^|[^a-z0-9])${escapeRe(term)}s?([^a-z0-9]|$)`, 'i').test(text)
+export const hasTerm = (text, term) => new RegExp(`(^|[^a-z0-9])${escapeRe(term)}s?([^a-z0-9]|$)`, 'i').test(text)
 const stripBullet = (l) => l.replace(/^[\s\u2022\u25CF\u25AA\u25BA•·▪►>*\-–—]+/, '').replace(/^\(?\d{1,2}[.)]\s+/, '').trim()
 
 function headingOf(line) {
@@ -100,7 +100,7 @@ function match(item, evidence) {
   for (const e of withStatement) {
     const b = blob(e)
     const hit = skills.length ? skills.some((s) => s.terms.some((t) => hasTerm(b, t))) : words.filter((w) => b.includes(w)).length >= 2
-    if (hit) return { status: 'backed', reason: `Backed by your experience: ${e.title}` }
+    if (hit) return { status: 'backed', source: e.id, reason: `Backed by your experience: ${e.title}` }
   }
   if (skills.length) {
     const mentioned = evidence.experiences.find((e) => skills.some((s) => s.terms.some((t) => hasTerm(blob(e), t))))

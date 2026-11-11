@@ -16,11 +16,11 @@ export function cvFromProfile({ profile, email, education, skills, experiences }
       start_date: e.start_date || '', end_date: e.end_date || '', still_studying: Boolean(e.still_studying), notes: e.notes || '',
     })),
     experiences: experiences.map((x) => ({
-      include: true, type: x.type, title: x.title, organisation: x.organisation || '', role: x.role || '',
+      include: true, source_id: x.id, type: x.type, title: x.title, organisation: x.organisation || '', role: x.role || '',
       start_date: x.start_date || '', end_date: x.end_date || '', is_current: Boolean(x.is_current),
       statement: x.evidence_statement || '',
     })),
-    skills: skills.map((s) => ({ include: true, name: s.name, category: s.category, featured: Boolean(s.featured) })),
+    skills: skills.map((s) => ({ include: true, source_id: s.id, name: s.name, category: s.category, featured: Boolean(s.featured) })),
   }
 }
 
