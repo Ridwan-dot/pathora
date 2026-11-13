@@ -23,6 +23,9 @@ import CvTailor from './pages/cv/CvTailor'
 import ApplicationsList from './pages/applications/ApplicationsList'
 import ApplicationForm from './pages/applications/ApplicationForm'
 import ApplicationDetails from './pages/applications/ApplicationDetails'
+import SettingsAccount from './pages/settings/SettingsAccount'
+import SettingsPrivacy from './pages/settings/SettingsPrivacy'
+import DeleteAccount from './pages/settings/DeleteAccount'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -61,6 +64,9 @@ function App() {
           <Route element={<FocusLayout backTo="/dashboard" backLabel="Overview" wide />}>
             <Route path="/analyse" element={<Analyser />} />
           </Route>
+          <Route element={<FocusLayout backTo="/settings" backLabel="Settings" />}>
+            <Route path="/settings/delete" element={<DeleteAccount />} />
+          </Route>
           <Route element={<FocusLayout backTo="/applications" backLabel="My applications" />}>
             <Route path="/applications/edit" element={<ApplicationForm />} />
             <Route path="/applications/details" element={<ApplicationDetails />} />
@@ -84,8 +90,10 @@ function App() {
             <Route path="/profile" element={<ProfileOverview />} />
             <Route path="/cv-studio" element={<CvHome />} />
             <Route path="/applications" element={<ApplicationsList />} />
+            <Route path="/settings" element={<SettingsAccount />} />
+            <Route path="/settings/privacy" element={<SettingsPrivacy />} />
             {appNav
-              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse' && item.to !== '/cv-studio' && item.to !== '/applications')
+              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse' && item.to !== '/cv-studio' && item.to !== '/applications' && item.to !== '/settings')
               .map((item) => (
                 <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
               ))}

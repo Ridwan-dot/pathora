@@ -75,7 +75,7 @@ export default function Signup() {
         <PasswordField id="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} error={errors.password} hint="At least 8 characters, with a letter and a number." />
         <label className="mt-4 flex items-start gap-2 text-sm">
           <input type="checkbox" className="mt-1 h-5 w-5" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
-          <span>I agree to the Terms and Privacy Policy.</span>
+          <span>I agree to the <a href="/terms" target="_blank" rel="noopener noreferrer" className="underline">Terms</a> and <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline">Privacy Policy</a>.</span>
         </label>
         {errors.agree && <p role="alert" className="mt-1 text-sm text-danger">{errors.agree}</p>}
         <Button type="submit" disabled={busy || !configured} className="mt-5 w-full">{busy ? 'Creating your account…' : 'Create my account'}</Button>

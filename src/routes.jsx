@@ -2,6 +2,7 @@ import Home from './pages/Home'
 import ToolPage from './pages/ToolPage'
 import ResourcesIndex from './pages/ResourcesIndex'
 import GuidePage from './pages/GuidePage'
+import { Privacy, Terms } from './pages/Legal'
 import { features } from './content/features'
 import { guides } from './content/guides'
 import { appNav } from './navigation'
@@ -10,6 +11,8 @@ import { appNav } from './navigation'
 export const publicRoutes = [
   { path: '/', element: <Home /> },
   ...features.map((f) => ({ path: `/tools/${f.slug}`, element: <ToolPage feature={f} />, live: f.live })),
+  { path: '/privacy', element: <Privacy />, live: false },
+  { path: '/terms', element: <Terms />, live: false },
   { path: '/resources', element: <ResourcesIndex /> },
   ...guides.map((g) => ({ path: `/resources/${g.slug}`, element: <GuidePage guide={g} /> })),
 ]
@@ -30,6 +33,8 @@ export const privatePaths = [
   '/cv-studio/tailor',
   '/applications/edit',
   '/applications/details',
+  '/settings/privacy',
+  '/settings/delete',
 ]
 
 // Every page we pre-build as HTML.

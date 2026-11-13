@@ -37,7 +37,8 @@ export default function PublicLayout() {
             </ul>
           </nav>
         </div>
-        <p className="mx-auto mt-6 max-w-5xl text-muted">
+        <p className="mx-auto mt-6 max-w-5xl"><Link to="/privacy" className="underline">Privacy Policy</Link> · <Link to="/terms" className="underline">Terms of Use</Link></p>
+        <p className="mx-auto mt-2 max-w-5xl text-muted">
           Pathora offers guidance, not guarantees. Your experience and final applications remain yours.
         </p>
       </footer>
