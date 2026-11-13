@@ -20,6 +20,9 @@ import CvEditor from './pages/cv/CvEditor'
 import CvPreview from './pages/cv/CvPreview'
 import CvVersions from './pages/cv/CvVersions'
 import CvTailor from './pages/cv/CvTailor'
+import ApplicationsList from './pages/applications/ApplicationsList'
+import ApplicationForm from './pages/applications/ApplicationForm'
+import ApplicationDetails from './pages/applications/ApplicationDetails'
 import ComingSoon from './pages/ComingSoon'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
@@ -58,6 +61,10 @@ function App() {
           <Route element={<FocusLayout backTo="/dashboard" backLabel="Overview" wide />}>
             <Route path="/analyse" element={<Analyser />} />
           </Route>
+          <Route element={<FocusLayout backTo="/applications" backLabel="My applications" />}>
+            <Route path="/applications/edit" element={<ApplicationForm />} />
+            <Route path="/applications/details" element={<ApplicationDetails />} />
+          </Route>
           <Route element={<FocusLayout backTo="/cv-studio" backLabel="CV Studio" wide />}>
             <Route path="/cv-studio/edit" element={<CvEditor />} />
             <Route path="/cv-studio/preview" element={<CvPreview />} />
@@ -76,8 +83,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<ProfileOverview />} />
             <Route path="/cv-studio" element={<CvHome />} />
+            <Route path="/applications" element={<ApplicationsList />} />
             {appNav
-              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse' && item.to !== '/cv-studio')
+              .filter((item) => item.to !== '/dashboard' && item.to !== '/profile' && item.to !== '/analyse' && item.to !== '/cv-studio' && item.to !== '/applications')
               .map((item) => (
                 <Route key={item.to} path={item.to} element={<ComingSoon title={item.label} />} />
               ))}

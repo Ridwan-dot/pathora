@@ -88,7 +88,8 @@ function Results({ analysis, evidence, onRemove }) {
 
       <p className="mt-4 rounded-2xl bg-sage p-4 text-sm"><b>A note on fit.</b> Pathora only compares what you’ve saved. It won’t invent experience, guarantee an interview, or claim to know private screening rules.</p>
       <div className="mt-4 flex flex-wrap gap-3">
-        <Button to="/analyse">Analyse another job</Button>
+        <Button to={`/applications/edit?job=${analysis.id}`}>Track this application</Button>
+        <Button to="/analyse" variant="outline">Analyse another job</Button>
         <Button variant="outline" onClick={() => setConfirm(true)}>Remove this analysis</Button>
       </div>
       {confirm && (

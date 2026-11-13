@@ -28,6 +28,8 @@ export const privatePaths = [
   '/cv-studio/preview',
   '/cv-studio/versions',
   '/cv-studio/tailor',
+  '/applications/edit',
+  '/applications/details',
 ]
 
 // Every page we pre-build as HTML.
